@@ -1,0 +1,27 @@
+/*
+ * CSS rules for visualization.
+ * Class namespacing is good practice.
+ */
+
+.vizviz-charts .vizviz-charts-inner-label label.control-label{
+  width: 36px !important;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.vizviz-charts > .control-label {
+  display: none;
+}
+
+.vizviz-charts .controls.controls-join {
+  margin-left: 0px !important;
+}
+
+.vizviz-charts splunk-color-picker {
+  margin-top: -3px;
+  margin-left: 8px;
+}
+
+.form-horizontal .control-group.vizviz-charts {
+  margin-bottom: 4px;
+}

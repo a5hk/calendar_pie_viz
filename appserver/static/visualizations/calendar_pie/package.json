@@ -1,0 +1,29 @@
+{
+  "name": "calendar_pie",
+  "version": "1.0.0",
+  "description": "A calendar with pie charts showing the distribution of different categories for each day.",
+  "main": "visualization.js",
+  "scripts": {
+    "_build": "$SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js",
+    "build": "node ./node_modules/webpack/bin/webpack.js",
+    "_devbuild": "$SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js --progress",
+    "devbuild": "node ./node_modules/webpack/bin/webpack.js --progress",
+    "_watch": "$SPLUNK_HOME/bin/splunk cmd node ./node_modules/webpack/bin/webpack.js -d --watch --progress",
+    "watch": "node ./node_modules/webpack/bin/webpack.js -d eval --watch --progress"
+  },
+  "author": "a5hk",
+  "license": "MIT",
+  "devDependencies": {
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.9.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "dependencies": {
+    "echarts": "^5.4.0"
+  },
+  "commented_out_dependencies": {
+    "jquery": "^2.2.0",
+    "underscore": "^1.8.3"
+  }
+}

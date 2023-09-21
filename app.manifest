@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "2.0.0",
+  "info": {
+    "title": "Calendar Pie",
+    "id": {
+      "group": null,
+      "name": "calendar_pie_viz",
+      "version": "1.0.0"
+    },
+    "author": [
+      {
+        "name": "a5hk",
+        "email": null,
+        "company": null
+      }
+    ],
+    "releaseDate": null,
+    "description": "A calendar with pie charts showing the distribution of different categories for each day.",
+    "classification": {
+      "intendedAudience": null,
+      "categories": [],
+      "developmentStatus": null
+    },
+    "commonInformationModels": null,
+    "license": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "privacyPolicy": {
+      "name": null,
+      "text": null,
+      "uri": null
+    },
+    "releaseNotes": {
+      "name": null,
+      "text": "./README.md",
+      "uri": null
+    }
+  },
+  "dependencies": null,
+  "tasks": null,
+  "inputGroups": null,
+  "incompatibleApps": null,
+  "platformRequirements": null,
+  "supportedDeployments": [
+    "_standalone",
+    "_distributed"
+  ],
+  "targetWorkloads": [
+    "_search_heads"
+  ]
+}

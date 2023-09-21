@@ -1,0 +1,30 @@
+<form class="splunk-formatter-section" section-label="Calendar">
+  <splunk-control-group label="Show dates">
+    <splunk-radio-input name="{{VIZ_NAMESPACE}}.showDates" value="true">
+      <option value="false">No</option>
+      <option value="true">Yes</option>
+    </splunk-radio-input>
+  </splunk-control-group>
+  <splunk-control-group label="First day of week">
+    <splunk-radio-input name="{{VIZ_NAMESPACE}}.firstDay" value="1">
+      <option value="5">Fri</option>
+      <option value="6">Sat</option>
+      <option value="0">Sun</option>
+      <option value="1">Mon</option>
+    </splunk-radio-input>
+  </splunk-control-group>
+</form
+
+<form class="splunk-formatter-section" section-label="sep"></form>
+
+<form class="splunk-formatter-section" section-label="Pie">
+  <splunk-control-group label="Pie radius">
+    <splunk-text-input name="{{VIZ_NAMESPACE}}.radius"></splunk-text-input>
+  </splunk-control-group>
+  <splunk-control-group label="Show values">
+    <splunk-radio-input name="{{VIZ_NAMESPACE}}.showValues" value="false">
+      <option value="false">No</option>
+      <option value="true">Yes</option>
+    </splunk-radio-input>
+  </splunk-control-group>
+</form

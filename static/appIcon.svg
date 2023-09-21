@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="appIcon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     showborder="false"
+     inkscape:zoom="1.3736953"
+     inkscape:cx="555.43613"
+     inkscape:cy="301.0129"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#c20aac;stroke:#c20aac;stroke-width:0.227744"
+       id="rect288"
+       width="16.705587"
+       height="33.638924"
+       x="15.371471"
+       y="101.71387" />
+    <rect
+       style="fill:#c20aac;stroke:#c20aac;stroke-width:0.321493"
+       id="rect288-7"
+       width="16.611837"
+       height="67.411842"
+       x="59.59993"
+       y="67.894073" />
+    <rect
+       style="fill:#c20aac;stroke:#c20aac;stroke-width:0.278676"
+       id="rect288-7-8"
+       width="16.654654"
+       height="50.521324"
+       x="103.7601"
+       y="84.806" />
+    <path
+       style="fill:none;stroke:#00aa00;stroke-width:4.23333328;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none;opacity:1"
+       d="M 20.250317,32.414104 68.462893,94.246053 110.68293,56.3842"
+       id="path442" />
+  </g>
+</svg>
