@@ -50,7 +50,6 @@ define([
 
     getInitialDataParams: function () {
       return {
-        // outputMode: SplunkVisualizationBase.ROW_MAJOR_OUTPUT_MODE,
         outputMode: SplunkVisualizationBase.RAW_OUTPUT_MODE,
         count: 1000,
       };
@@ -105,8 +104,10 @@ class Config {
   background: string;
   foreground: string;
   showValues: boolean;
-  showDates: boolean;
   firstDay: 0 | 1 | 5 | 6;
+  showDates: boolean;
+  showMonth: boolean;
+  showYear: boolean;
   radius: number;
 
   constructor(c: any, mode: string) {
@@ -116,6 +117,9 @@ class Config {
       c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showValues"] === "true" ? true : false;
     this.showDates =
       c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showDates"] === "true" ? true : false;
+    this.showMonth =
+      c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showMonth"] === "true" ? true : false;
+    this.showYear = c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showYear"] === "true" ? true : false;
     this.firstDay = this.validateDay(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.firstDay"]);
     this.radius = this.validateRadius(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.radius"]);
   }
@@ -170,7 +174,7 @@ function pieSeries(data: PieData[], conf: Config) {
       label: {
         formatter: "{c}",
         position: "inside",
-        show: false,
+        show: conf.showValues,
       },
       data: r.data,
     };
@@ -188,7 +192,7 @@ function option(data: SearchResult, conf: Config) {
       orient: "vertical",
       cellSize: conf.cellSize,
       yearLabel: {
-        show: false,
+        show: conf.showYear,
         fontSize: 30,
       },
       dayLabel: {
@@ -197,7 +201,7 @@ function option(data: SearchResult, conf: Config) {
         nameMap: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       monthLabel: {
-        show: false,
+        show: conf.showMonth,
       },
       range: [data.results[0]._time, data.results[data.results.length - 1]._time],
     },
@@ -207,13 +211,14 @@ function option(data: SearchResult, conf: Config) {
         coordinateSystem: "calendar",
         symbolSize: 0,
         label: {
-          show: true,
+          show: conf.showDates,
           formatter: function (params: Params) {
             const date = new Date(params.value);
             return date.getDate();
           },
           fontSize: 14,
           offset: conf.cellSize.map((x) => -x / 2 + 10),
+          color: conf.foreground,
         },
         data: data.results.map((x) => x._time),
       },
