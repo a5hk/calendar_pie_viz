@@ -116,9 +116,9 @@ class Config {
     this.showValues =
       c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showValues"] === "true" ? true : false;
     this.showDates =
-      c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showDates"] === "true" ? true : false;
+      c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showDates"] === "false" ? false : true;
     this.showMonth =
-      c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showMonth"] === "true" ? true : false;
+      c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showMonth"] === "false" ? false : true;
     this.showYear = c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showYear"] === "true" ? true : false;
     this.firstDay = this.validateDay(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.firstDay"]);
     this.radius = this.validateRadius(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.radius"]);
@@ -143,7 +143,8 @@ class Config {
   }
 
   get cellSize(): number[] {
-    return [this.radius * 2 + 20, this.radius * 2 + 20];
+    const margin = 20;
+    return [this.radius * 2 + margin, this.radius * 2 + margin];
   }
 }
 
@@ -167,12 +168,21 @@ function preProcess(data: Result[]): PieData[] {
 function pieSeries(data: PieData[], conf: Config) {
   return data.map((r) => {
     return {
+      tooltip: {
+        formatter: "{b}:&nbsp;&nbsp;&nbsp;&nbsp;{c}&nbsp;&nbsp;({d}%)",
+      },
+      emphasis: {
+        label: {
+          show: true,
+          formatter: "{d}%",
+        },
+      },
       type: "pie",
       center: r._time,
       radius: conf.radius,
       coordinateSystem: "calendar",
       label: {
-        formatter: "{c}",
+        formatter: "{d}%",
         position: "inside",
         show: conf.showValues,
       },
