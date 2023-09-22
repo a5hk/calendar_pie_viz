@@ -112,7 +112,7 @@ class Config {
 
   constructor(c: any, mode: string) {
     this.background = mode === "dark" ? "#101317" : "#fff";
-    this.foreground = mode === "dark" ? "#eaeaea" : "#333";
+    this.foreground = mode === "dark" ? "#fff" : "#333";
     this.showValues =
       c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showValues"] === "true" ? true : false;
     this.showDates =
@@ -201,6 +201,12 @@ function option(data: SearchResult, conf: Config) {
       left: "center",
       orient: "vertical",
       cellSize: conf.cellSize,
+      splitLine: {
+        lineStyle: {
+          color: conf.foreground,
+          width: 2,
+        },
+      },
       itemStyle: {
         color: "transparent",
       },
