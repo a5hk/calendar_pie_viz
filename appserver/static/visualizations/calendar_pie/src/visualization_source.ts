@@ -201,6 +201,9 @@ function option(data: SearchResult, conf: Config) {
       left: "center",
       orient: "vertical",
       cellSize: conf.cellSize,
+      itemStyle: {
+        color: "transparent",
+      },
       yearLabel: {
         show: conf.showYear,
         fontSize: 30,
