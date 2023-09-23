@@ -1,10 +1,5 @@
 // @ts-expect-error
-define([
-  "api/SplunkVisualizationBase",
-  "api/SplunkVisualizationUtils",
-  "echarts",
-  // "echarts/theme/vintage",
-], function (
+define(["api/SplunkVisualizationBase", "api/SplunkVisualizationUtils", "echarts"], function (
   // @ts-expect-error
   SplunkVisualizationBase,
   // @ts-expect-error
@@ -42,9 +37,15 @@ define([
         return this;
       }
 
-      let c = this.initChart(this.el);
-      let conf = new Config(config, SplunkVisualizationUtils.getCurrentTheme());
-      let opt = option(data, conf);
+      const c = this.initChart(this.el);
+      // const palette = SplunkVisualizationUtils.getColorPalette(
+      //   "splunkCategorical",
+      //   SplunkVisualizationUtils.getCurrentTheme()
+      // );
+      // console.log(palette);
+      // shuffle(palette);
+      const conf = new Config(config, SplunkVisualizationUtils.getCurrentTheme());
+      const opt = option(data, conf);
       c.setOption(opt);
     },
 
@@ -111,7 +112,7 @@ class Config {
   radius: number;
 
   constructor(c: any, mode: string) {
-    this.background = mode === "dark" ? "#101317" : "#fff";
+    this.background = mode === "dark" ? "#333" : "#fff";
     this.foreground = mode === "dark" ? "#fff" : "#333";
     this.showValues =
       c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showValues"] === "true" ? true : false;
@@ -148,6 +149,13 @@ class Config {
   }
 }
 
+// function shuffle(arr: string[]) {
+//   for (let i = arr.length - 1; i > 0; i--) {
+//     const j = Math.floor(Math.random() * (i + 1));
+//     [arr[i], arr[j]] = [arr[j], arr[i]];
+//   }
+// }
+
 function preProcess(data: Result[]): PieData[] {
   const res: PieData[] = [];
 
@@ -175,6 +183,10 @@ function pieSeries(data: PieData[], conf: Config) {
         label: {
           show: true,
           formatter: "{d}%",
+          fontSize: 14,
+          color: conf.foreground,
+          backgroundColor: conf.background,
+          padding: [3, 6],
         },
       },
       type: "pie",
@@ -185,6 +197,9 @@ function pieSeries(data: PieData[], conf: Config) {
         formatter: "{d}%",
         position: "inside",
         show: conf.showValues,
+      },
+      labelLayout: {
+        verticalAlign: "middle",
       },
       data: r.data,
     };
@@ -197,6 +212,7 @@ function option(data: SearchResult, conf: Config) {
     legend: { type: "scroll" },
     tooltip: { show: true },
     calendar: {
+      z: 1,
       top: "middle",
       left: "center",
       orient: "vertical",
