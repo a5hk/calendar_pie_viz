@@ -110,6 +110,28 @@ class Config {
   showMonth: boolean;
   showYear: boolean;
   radius: number;
+  #colors = [
+    "#2ec7c9",
+    "#b6a2de",
+    "#5ab1ef",
+    "#ffb980",
+    "#d87a80",
+    "#8d98b3",
+    "#e5cf0d",
+    "#97b552",
+    "#95706d",
+    "#dc69aa",
+    "#07a2a4",
+    "#9a7fd1",
+    "#588dd5",
+    "#f5994e",
+    "#c05050",
+    "#59678c",
+    "#c9ab00",
+    "#7eb00a",
+    "#6f5553",
+    "#c14089",
+  ];
 
   constructor(c: any, mode: string) {
     this.background = mode === "dark" ? "#333" : "#fff";
@@ -123,6 +145,7 @@ class Config {
     this.showYear = c["display.visualizations.custom.calendar_pie_viz.calendar_pie.showYear"] === "true" ? true : false;
     this.firstDay = this.validateDay(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.firstDay"]);
     this.radius = this.validateRadius(c["display.visualizations.custom.calendar_pie_viz.calendar_pie.radius"]);
+    this.colors = c;
   }
 
   sanitizeItem(s: string): number | "" {
@@ -140,7 +163,23 @@ class Config {
 
   validateRadius(rad: string): number {
     const d = this.sanitizeItem(rad);
-    return d === "" ? 30 : d;
+    return d === "" ? 50 : d;
+  }
+
+  isColor(hex: string) {
+    return /^#[0-9a-f]{6}$/i.test(hex);
+  }
+
+  get colors() {
+    return this.#colors;
+  }
+
+  set colors(c: any) {
+    for (let i = 0; i < this.#colors.length; i++) {
+      if (this.isColor(c[`display.visualizations.custom.calendar_pie_viz.calendar_pie.color${i + 1}`])) {
+        this.#colors[i] = c[`display.visualizations.custom.calendar_pie_viz.calendar_pie.color${i + 1}`];
+      }
+    }
   }
 
   get cellSize(): number[] {
@@ -177,7 +216,7 @@ function pieSeries(data: PieData[], conf: Config) {
   return data.map((r) => {
     return {
       tooltip: {
-        formatter: "{b}:&nbsp;&nbsp;&nbsp;&nbsp;{c}&nbsp;&nbsp;({d}%)",
+        formatter: "{b}:&nbsp;&nbsp;&nbsp;&nbsp;{c}",
       },
       emphasis: {
         label: {
@@ -208,12 +247,13 @@ function pieSeries(data: PieData[], conf: Config) {
 
 function option(data: SearchResult, conf: Config) {
   return {
+    color: conf.colors,
     backgroundColor: "transparent",
     legend: { type: "scroll" },
     tooltip: { show: true },
     calendar: {
       z: 1,
-      top: "middle",
+      bottom: 20,
       left: "center",
       orient: "vertical",
       cellSize: conf.cellSize,
@@ -229,6 +269,7 @@ function option(data: SearchResult, conf: Config) {
       yearLabel: {
         show: conf.showYear,
         fontSize: 30,
+        margin: 50,
       },
       dayLabel: {
         margin: 20,
@@ -236,7 +277,11 @@ function option(data: SearchResult, conf: Config) {
         nameMap: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
       monthLabel: {
+        fontSize: 16,
+        fontWeight: 700,
         show: conf.showMonth,
+        margin: 10,
+        color: conf.foreground,
       },
       range: [data.results[0]._time, data.results[data.results.length - 1]._time],
     },
