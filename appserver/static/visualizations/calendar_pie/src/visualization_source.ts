@@ -247,6 +247,14 @@ function pieSeries(data: PieData[], conf: Config) {
 
 function option(data: SearchResult, conf: Config) {
   return {
+    toolbox: {
+      feature: {
+        saveAsImage: {
+          backgroundColor: conf.background,
+          name: "calendar-chart",
+        },
+      },
+    },
     color: conf.colors,
     backgroundColor: "transparent",
     legend: { type: "scroll" },
