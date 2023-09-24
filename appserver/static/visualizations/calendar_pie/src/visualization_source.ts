@@ -167,7 +167,7 @@ class Config {
   }
 
   isColor(hex: string) {
-    return /^#[0-9a-f]{6}$/i.test(hex);
+    return /^#[0-9a-f]{6}|#[0-9a-f]{3}$/i.test(hex);
   }
 
   get colors() {
