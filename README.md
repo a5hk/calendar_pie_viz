@@ -1,4 +1,4 @@
-# Threshold
+# Calendar Pie Chart
 
 A calendar with pie charts showing the distribution of different categories for each day.
 
